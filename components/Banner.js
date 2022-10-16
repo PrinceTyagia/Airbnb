@@ -5,6 +5,7 @@ const Banner = () => {
    <div className="relative h-[400px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px]">
       <Image src="https://links.papareact.com/0fm" layout='fill'
         objectFit='cover'
+        priority='2xl'
       />
       <div className='absolute top-1/2 w-full text-center'>
         <p className='text-sm sm:text-lg'>Not where to go? Perfect.</p>

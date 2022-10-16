@@ -1,4 +1,4 @@
-
+import React from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Banner from '../components/Banner'
@@ -6,8 +6,16 @@ import SmallCard from '../components/SmallCard'
 import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
-const Home = ({exploreData,cardsData}) => {
-  return (
+
+
+type Props = {
+    exploreData:[],
+    cardsData:[]
+    
+  }
+
+export default function Home({exploreData,cardsData}:Props) {
+  return(
     <div className="">
       <Head>
         <title>Airbnb</title>
@@ -21,7 +29,7 @@ const Home = ({exploreData,cardsData}) => {
             
               <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                 {
-                exploreData?.map(({img,distance,location}) => (
+                exploreData?.map(({location,img,distance,}) => (
                  <SmallCard key={img} img={img}  distance={distance} location={location}/>
                 ))
               }
@@ -49,13 +57,13 @@ const Home = ({exploreData,cardsData}) => {
     </div>
   )
 }
-
-export default Home
-
-
-export async function getStaticProps(){
+export async function getStaticProps () {
   const exploreData = await fetch(`https://www.jsonkeeper.com/b/4G1G`).
   then((res) => res.json())
+  console.log(exploreData);
+  
+  
+
 
   const cardsData =  await  fetch(`https://www.jsonkeeper.com/b/VHHT`).then((res) =>  res.json())
 
@@ -65,4 +73,12 @@ export async function getStaticProps(){
       cardsData
     }
   }
+  // ...
 }
+
+
+
+
+// export async function getStaticProps(){
+  
+// }
