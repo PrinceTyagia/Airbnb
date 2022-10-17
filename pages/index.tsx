@@ -6,6 +6,7 @@ import SmallCard from '../components/SmallCard'
 import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
+import { useRouter } from 'next/router'
 
 
 type Props = {
@@ -15,13 +16,16 @@ type Props = {
   }
 
 export default function Home({exploreData,cardsData}:Props) {
+   const router = useRouter();
+    const { location, startDate, endDate, noOfGuest } = router.query;
+   
   return(
     <div className="">
       <Head>
         <title>Airbnb</title>
         <link rel="icon" href="/airbnb.ico" />
       </Head>
-        <Header/>
+        <Header  />
         <Banner/>
         <main className='max-w-7xl mx-auto px-8 sm:px-16 '>
             <section className='pt-6'>
@@ -58,16 +62,9 @@ export default function Home({exploreData,cardsData}:Props) {
   )
 }
 export async function getStaticProps () {
-  const exploreData = await fetch(`https://www.jsonkeeper.com/b/4G1G`).
-  then((res) => res.json())
-  console.log(exploreData);
-  
-  
-
-
-  const cardsData =  await  fetch(`https://www.jsonkeeper.com/b/VHHT`).then((res) =>  res.json())
-
-  return {
+    const exploreData = await fetch(`https://www.jsonkeeper.com/b/4G1G`).then((res) => res.json())
+    const cardsData =  await  fetch(`https://www.jsonkeeper.com/b/VHHT`).then((res) =>  res.json())
+    return {
     props:{
       exploreData,
       cardsData
@@ -79,6 +76,3 @@ export async function getStaticProps () {
 
 
 
-// export async function getStaticProps(){
-  
-// }
