@@ -7,7 +7,7 @@ import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
 import { useRouter } from 'next/router'
-
+import { format } from "date-fns";
 
 type Props = {
     exploreData:[],
@@ -16,8 +16,10 @@ type Props = {
   }
 
 export default function Home({exploreData,cardsData}:Props) {
-   const router = useRouter();
-    const { location, startDate, endDate, noOfGuest } = router.query;
+ const router = useRouter();
+  const { location, startDate, endDate, noOfGuest } = router.query;
+
+
    
   return(
     <div className="">
@@ -25,7 +27,7 @@ export default function Home({exploreData,cardsData}:Props) {
         <title>Airbnb</title>
         <link rel="icon" href="/airbnb.ico" />
       </Head>
-        <Header  />
+        <Header placeholder=""  />
         <Banner/>
         <main className='max-w-7xl mx-auto px-8 sm:px-16 '>
             <section className='pt-6'>
